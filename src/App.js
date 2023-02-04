@@ -1,11 +1,16 @@
 import React from 'react';
+
 import { NavigationContainer } from '@react-navigation/native';
-import StackNavigation from './navigations/StackNavigation';
+import BottomTabNavigation from './navigations/BottomTabNavigation';
+
+import { RecoilRoot } from 'recoil';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <StackNavigation />
+      <RecoilRoot>
+        <BottomTabNavigation />
+      </RecoilRoot>
     </NavigationContainer>
   )
 }
