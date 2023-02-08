@@ -1,8 +1,7 @@
 import React from 'react'
 import { createStackNavigator, TransitionPresets } from "@react-navigation/stack";
 
-import StoreList from '../screens/StoreList';
-import Detail from '../screens/Detail';
+import { StackMainData } from '../datas/StackMainData';
 
 const Stack = createStackNavigator();
 
@@ -23,18 +22,19 @@ const CustomNavigation = () => {
         headerTitleAlign: 'center',
       }}
     >
-      <Stack.Screen
-        name="STORE"
-        component={StoreList}
-      />
-      <Stack.Screen
-        name="Detail"
-        options={{
-          headerShown: false,
-          ...TransitionPresets.SlideFromRightIOS,
-        }}
-        component={Detail}
-      />
+      {
+        StackMainData && StackMainData.map((stack, index) => (
+          <Stack.Screen
+            key={index}
+            name={stack.name}
+            options={{
+              headerShown: false,
+              ...TransitionPresets.SlideFromRightIOS,
+            }}
+            component={stack.component}
+          />
+        ))
+      }
     </Stack.Navigator>
   )
 }
