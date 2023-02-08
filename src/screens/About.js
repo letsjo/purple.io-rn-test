@@ -1,15 +1,16 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-const Container = styled.View`
-  flex: 1;
+const Container = styled.ScrollView`
+  width: 100%;
+  flex: 24;
+  padding: 10px 15px;
+  box-sizing: border-box;
   background-color: #fff;
-  align-items: center;
-  justify-content: center;
 `;
 
 const Title = styled.Text`
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
   color: #2c2c2c;
 `;
@@ -17,7 +18,38 @@ const Title = styled.Text`
 const About = () => {
   return (
     <Container>
-      <Title>About!</Title>
+      <Title>@2022 조현오</Title>
+      <Title>안녕하세요!</Title>
+      <Title>React Native 열심히 공부해서 만들어 보았습니다.</Title>
+      <Title>@2022 조현오</Title>
+      <Title>안녕하세요!</Title>
+      <Title>React Native 열심히 공부해서 만들어 보았습니다.</Title>
+      <Title>@2022 조현오</Title>
+      <Title>안녕하세요!</Title>
+      <Title>React Native 열심히 공부해서 만들어 보았습니다.</Title>
+      <Title>@2022 조현오</Title>
+      <Title>안녕하세요!</Title>
+      <Title>React Native 열심히 공부해서 만들어 보았습니다.</Title>
+      <Title>@2022 조현오</Title>
+      <Title>안녕하세요!</Title>
+      <Title>React Native 열심히 공부해서 만들어 보았습니다.</Title>
+      <Title>@2022 조현오</Title>
+      <Title>안녕하세요!</Title>
+      <Title>React Native 열심히 공부해서 만들어 보았습니다.</Title>
+      <Title>@2022 조현오</Title>
+      <Title>안녕하세요!</Title>
+      <Title>React Native 열심히 공부해서 만들어 보았습니다.</Title>
+      <Title>@2022 조현오</Title>
+      <Title>안녕하세요!</Title>
+      <Title>React Native 열심히 공부해서 만들어 보았습니다.</Title>
+      <Title>@2022 조현오</Title>
+      <Title>안녕하세요!</Title>
+      <Title>React Native 열심히 공부해서 만들어 보았습니다.</Title>
+      <Title>@2022 조현오</Title>
+      <Title>안녕하세요!</Title>
+      <Title>React Native 열심히 공부해서 만들어 보았습니다.</Title>
+      <Title></Title>
+      <Title></Title>
     </Container>
   )
 }
