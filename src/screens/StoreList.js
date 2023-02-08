@@ -1,44 +1,64 @@
-import React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { useEffect, useState } from 'react';
+
+import BrandCard from '../components/BrandCard';
+import userAPI from '../apis/userAPI'
+
 import styled from 'styled-components/native';
+import { windowWidth } from '../config/globalStyles';
 
-const Container = styled.View`
-  flex: 1;
+const BrandListWrapper = styled.FlatList`
   background-color: #fff;
-  align-items: center;
-  justify-content: center;
-`;
+`
 
-const Title = styled.Text`
-  font-size: 30px;
-  font-weight: bold;
-  color: #2c2c2c;
-`;
+const BrandCardTouch = styled.TouchableOpacity`
+  padding-left: 10px;
+  padding-right: 10px;
+`
 
-const Store = ({ navigation }) => {
+const StoreList = ({ navigation }) => {
+  const [brandList, setBrandList] = useState([]);
+
+  const [containerWidth, setContainerWidth] = useState(0);
+  const margins = 39 * 2;
+  const numColumns = 2;
+
+  useEffect(() => {
+    const getBrandList = () => {
+      userAPI.get('/stores')
+        .then(res => {
+          setBrandList(res.data);
+        }).catch(error => console.log(error));
+    }
+    getBrandList();
+  }, []);
+
   return (
-    <Container>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Detail', { msg: "From Screen 1" })}
-        style={styles.button}
-      >
-        <Title>Click Me!</Title>
-      </TouchableOpacity>
-    </Container>
+    <BrandListWrapper
+      data={brandList}
+      columnWrapperStyle={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        marginTop: 18,
+        marginBottom: 18,
+      }}
+      onLayout={e => setContainerWidth(e.nativeEvent.layout.width)}
+      renderItem={(brand) => (
+        <BrandCardTouch
+          windowWidth={windowWidth}
+          onPress={() => navigation.navigate('DETAIL', { brand, msg: "From Screen 1" })}
+        >
+          <BrandCard
+            width={(containerWidth - margins) / numColumns}
+            brand={brand.item}
+          />
+        </BrandCardTouch>
+      )}
+      keyExtractor={(item, index) => index}
+      numColumns={numColumns}
+    />
   )
 }
 
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: '#0275d8',
-    paddingVertical: 5,
-    paddingHorizontal: 10
-
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 25
-  }
-})
-
-export default Store
+export default StoreList
